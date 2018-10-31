@@ -40,20 +40,33 @@ game[27]=[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1];
 game[28]=[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 game[29]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
+function ubiRand(){
+    do{
+        var x = Math.round(Math.random()*29);
+        var y = Math.round(Math.random()*29);
+    }while (game[x][y]===1);
+}
+
 var fant1= new Array();
 fant1["car"]="f";
-fant1["ubicacio"]=game[1][1];
+ubiRand();
+fant1["i"]=x;
+fant1["e"]=y;
 fant1["direccio"]="right";
 var fant2= new Array();
 fant2["car"]="f";
-fant2["ubicacio"]=game[2][1];
+fant2["i"]=2;
+fant2["e"]=1;
 fant2["direccio"]="down";
 var fant3= new Array();
 fant3["car"]="f";
-fant3["ubicacio"]=game[5][1];
+fant3["i"]=5;
+fant3["e"]=1;
 fant3["direccio"]="right";
 var jugador= new Array();
 jugador["car"]="f";
-jugador["ubicacio"]=game[28][1];
+jugador["i"]=28;
+jugador["e"]=1;
 jugador["direccio"]="up";
 jugador["direccioDes"]="up";
+
