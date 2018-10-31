@@ -7,6 +7,7 @@ for (var i = 0; i < game.length; i++) {
   game[i] = new Array(30);
 }
 
+//Tauler
 //        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9
 game[0]= [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 game[1]= [1,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1];
@@ -38,3 +39,21 @@ game[26]=[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1];
 game[27]=[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1];
 game[28]=[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 game[29]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+
+var fant1= new Array();
+fant1["car"]="f";
+fant1["ubicacio"]=game[1][1];
+fant1["direccio"]="right";
+var fant2= new Array();
+fant2["car"]="f";
+fant2["ubicacio"]=game[2][1];
+fant2["direccio"]="down";
+var fant3= new Array();
+fant3["car"]="f";
+fant3["ubicacio"]=game[5][1];
+fant3["direccio"]="right";
+var jugador= new Array();
+jugador["car"]="f";
+jugador["ubicacio"]=game[28][1];
+jugador["direccio"]="up";
+jugador["direccioDes"]="up";
