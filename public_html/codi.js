@@ -40,18 +40,11 @@ game[27]=[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1];
 game[28]=[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 game[29]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
-function ubiRand(){
-    do{
-        var x = Math.round(Math.random()*29);
-        var y = Math.round(Math.random()*29);
-    }while (game[x][y]===1);
-}
-
 var fant1= new Array();
 fant1["car"]="f";
-ubiRand();
-fant1["i"]=x;
-fant1["e"]=y;
+var ubi=ubiRand();
+fant1["i"]=ubi[0];
+fant2["e"]=ubi[1];
 fant1["direccio"]="right";
 var fant2= new Array();
 fant2["car"]="f";
@@ -70,3 +63,11 @@ jugador["e"]=1;
 jugador["direccio"]="up";
 jugador["direccioDes"]="up";
 
+function ubiRand(){
+    do{
+        var x = Math.round(Math.random()*29);
+        var y = Math.round(Math.random()*29);
+    }while (game[x][y]===1);
+    
+    return [x,y];
+}
