@@ -152,3 +152,45 @@ function direRand(item){
                 break;
     }
 }
+
+function movItem(item){
+    if (game[item["i"]-1][item["e"]]===0 && game[item["i"]+1][item["e"]]===0 && game[item["i"]][item["e"]-1]===0 && game[item["i"]][item["e"]+1]===0 ){
+        direRand(item);
+    }
+    else {
+        switch (item["direccio"]) {
+                case "up":
+                    if (game[item["i"]-1][item["e"]]!==0){
+                        direRand(item);
+                    }
+                    else {
+                        game[item["i"]-1][item["e"]]=item["car"];
+                    }
+                    break;
+                case "down":
+                    if (game[item["i"]+1][item["e"]]!==0){
+                        direRand(item);
+                    }
+                    else {
+                        game[item["i"]+1][item["e"]]=item["car"];
+                    }
+                    break;
+                case "right":
+                    if (game[item["i"]][item["e"]+1]!==0){
+                        direRand(item);
+                    }
+                    else {
+                        game[item["i"]][item["e"]+1]=item["car"];
+                    }
+                    break;
+                case "left":
+                    if (game[item["i"]][item["e"]-1]!==0){
+                        direRand(item);
+                    }
+                    else {
+                        game[item["i"]][item["e"]-1]=item["car"];
+                    }
+                    break;
+        }
+    }
+}
