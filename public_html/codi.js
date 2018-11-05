@@ -74,6 +74,8 @@ setUbi(fant2);
 setUbi(fant3);
 setUbi(jugador);
 
+
+
 function ubiRand(){
     do{
         var x = Math.round(Math.random()*29);
@@ -85,4 +87,62 @@ function ubiRand(){
 
 function setUbi(item){
     game[item["i"]][item["e"]]=item["car"];
+}
+
+function direRand(item){
+    
+    set=false;
+    
+    do{
+        var num = Math.round(Math.random()*3);
+        switch (num) {
+            case 0:
+                if (game[item["i"]-1][item["e"]]===0){
+                    set=true;
+                }
+                else {
+                    set=false;
+                }
+            break;
+            case 1:
+                if (game[item["i"]+1][item["e"]]===0){
+                    set=true;
+                }
+                else {
+                    set=false;
+                }
+            break;
+            case 2:
+                if (game[item["i"]][item["e"]+1]===0){
+                    set=true;
+                }
+                else {
+                    set=false;
+                }
+            break;
+            case 3:
+                if (game[item["i"]][item["e"]-1]===0){
+                    set=true;
+                }
+                else {
+                    set=false;
+                }
+            break;
+        }
+    }while (set!==true);
+    
+    switch (num) {
+            case 0:
+                item["direccio"]="up";
+                break;
+            case 1:
+                item["direccio"]="down";
+                break;
+            case 2:
+                item["direccio"]="right";
+                break;
+            case 3:
+                item["direccio"]="left";
+                break;
+    }
 }
