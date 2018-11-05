@@ -40,45 +40,48 @@ game[27]=[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1];
 game[28]=[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 game[29]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
+//Creacio dels fantasmes y jugador
 var fant1= new Array();
 fant1["car"]="f";
 var ubi=ubiRand();
 fant1["i"]=ubi[0];
 fant1["e"]=ubi[1];
-fant1["direccio"]="right";
+//fant1["direccio"]="right";
+direRand(fant1);
 
 var fant2= new Array();
 fant2["car"]="f";
 var ubi=ubiRand();
 fant2["i"]=ubi[0];
 fant2["e"]=ubi[1];
-fant2["direccio"]="down";
+//fant2["direccio"]="down";
+direRand(fant2);
 
 var fant3= new Array();
 fant3["car"]="f";
 var ubi=ubiRand();
 fant3["i"]=ubi[0];
 fant3["e"]=ubi[1];
-fant3["direccio"]="right";
+//fant3["direccio"]="right";
+direRand(fant3);
 
 var jugador= new Array();
 jugador["car"]="j";
 var ubi=ubiRand();
 jugador["i"]=ubi[0];
 jugador["e"]=ubi[1];
-jugador["direccio"]="up";
+//jugador["direccio"]="up";
+direRand(jugador);
 jugador["direccioDes"]="up";
 
+//Ubiquem els fantasmes i el jugador al taule
 setUbi(fant1);
 setUbi(fant2);
 setUbi(fant3);
 setUbi(jugador);
 
-direRand(fant1);
-direRand(fant2);
-direRand(fant3);
-direRand(jugador);
-
+//FUNCIONS
+//Funcio per donar les cordenades del tauler de manera aleatoria
 function ubiRand(){
     do{
         var x = Math.round(Math.random()*29);
@@ -87,11 +90,11 @@ function ubiRand(){
     
     return [x,y];
 }
-
+//Funcio per ubicar la array introduida al tauler
 function setUbi(item){
     game[item["i"]][item["e"]]=item["car"];
 }
-
+//Funcio per establir la direccio de manera aleatoria
 function direRand(item){
     
     set=false;

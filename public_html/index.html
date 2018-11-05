@@ -11,16 +11,21 @@
             for (i=0; i<game.length; i++){
                 document.write("<br />");
                 for (e=0; e<game[i].length; e++){
-                    document.write(game[i][e]+" ");
+                    if(game[i][e]==="f" || game[i][e]==="j"){
+                        document.write("<b>"+game[i][e]+"</b> ");
+                    }
+                    else {
+                        document.write(game[i][e]+" ");
+                    }
                 }
             }
             
-            document.write("<br />"+fant1["i"]+fant1["e"]+" ");
-            document.write("<br />"+fant2["i"]+fant2["e"]+" ");
-            document.write("<br />"+fant3["i"]+fant3["e"]+" ");
-            document.write("<br />"+jugador["i"]+jugador["e"]+" ");
+            document.write("<br /><br />"+fant1["i"]+"|"+fant1["e"]+" ");
+            document.write("<br />"+fant2["i"]+"|"+fant2["e"]+" ");
+            document.write("<br />"+fant3["i"]+"|"+fant3["e"]+" ");
+            document.write("<br />"+jugador["i"]+"|"+jugador["e"]+" ");
             
-            document.write("<br />"+fant1["direccio"]+" ");
+            document.write("<br /><br />"+fant1["direccio"]+" ");
             document.write("<br />"+fant2["direccio"]+" ");
             document.write("<br />"+fant3["direccio"]+" ");
             document.write("<br />"+jugador["direccio"]+" ");
