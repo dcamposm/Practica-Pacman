@@ -97,7 +97,7 @@ function setUbi(item){
 //Funcio per establir la direccio de manera aleatoria
 function direRand(item){
     
-    set=false;
+    var set=false;
     
     do{
         var num = Math.round(Math.random()*3);
