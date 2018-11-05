@@ -74,7 +74,10 @@ setUbi(fant2);
 setUbi(fant3);
 setUbi(jugador);
 
-
+direRand(fant1);
+direRand(fant2);
+direRand(fant3);
+direRand(jugador);
 
 function ubiRand(){
     do{
