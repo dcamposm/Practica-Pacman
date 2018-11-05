@@ -86,7 +86,7 @@ function ubiRand(){
     do{
         var x = Math.round(Math.random()*29);
         var y = Math.round(Math.random()*29);
-    }while (game[x][y]===1);
+    }while (game[x][y]!==0);
     
     return [x,y];
 }
