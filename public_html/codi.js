@@ -41,7 +41,7 @@ game[28]=[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 game[29]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
 //Creacio dels fantasmes y jugador
-var fant1= new Array();
+/*var fant1= new Array();
 fant1["car"]="f";
 var ubi=ubiRand();
 fant1["i"]=ubi[0];
@@ -78,14 +78,14 @@ jugador["direccioDes"]="up";
 setUbi(fant1);
 setUbi(fant2);
 setUbi(fant3);
-setUbi(jugador);
+setUbi(jugador);*/
 
 //FUNCIONS
 //Funcio per donar les cordenades del tauler de manera aleatoria
 function ubiRand(){
     do{
-        var x = Math.round(Math.random()*29);
-        var y = Math.round(Math.random()*29);
+        x = Math.round(Math.random()*29);
+        y = Math.round(Math.random()*29);
     }while (game[x][y]!==0);
     
     return [x,y];

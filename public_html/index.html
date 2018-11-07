@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>PACMAN by Demetrio Campos</title>
@@ -6,26 +7,69 @@
         <script type="text/javascript" src="codi.js"></script>
     </head>
     <body>
+        
+        <p id="demo"></p>
         <script type="text/javascript">
             
-            setTimeout(function(){
-                for (i=0; i<game.length; i++){
-                    document.write("<br />");
-                    for (e=0; e<game[i].length; e++){
-                        if(game[i][e]==="f" || game[i][e]==="j"){
-                            document.write("<b>"+game[i][e]+"</b> ");
-                        }
-                        else {
-                            document.write(game[i][e]+" ");
+            
+            function createTaula(){
+                setInterval (function(){
+                //Creacio dels fantasmes y jugador
+                fant1= new Array();
+                fant1["car"]="f";
+                ubi=ubiRand();
+                fant1["i"]=ubi[0];
+                fant1["e"]=ubi[1];
+                //fant1["direccio"]="right";
+                direRand(fant1);
+
+                fant2= new Array();
+                fant2["car"]="f";
+                ubi=ubiRand();
+                fant2["i"]=ubi[0];
+                fant2["e"]=ubi[1];
+                //fant2["direccio"]="down";
+                direRand(fant2);
+
+                fant3= new Array();
+                fant3["car"]="f";
+                ubi=ubiRand();
+                fant3["i"]=ubi[0];
+                fant3["e"]=ubi[1];
+                //fant3["direccio"]="right";
+                direRand(fant3);
+
+                jugador= new Array();
+                jugador["car"]="j";
+                ubi=ubiRand();
+                jugador["i"]=ubi[0];
+                jugador["e"]=ubi[1];
+                //jugador["direccio"]="up";
+                direRand(jugador);
+                jugador["direccioDes"]="up";
+
+                //Ubiquem els fantasmes i el jugador al taule
+                setUbi(fant1);
+                setUbi(fant2);
+                setUbi(fant3);
+                setUbi(jugador);
+                
+                /*setInterval (function(){*/
+                    for (i=0; i<game.length; i++){
+                        document.write("<br/>");
+                        for (e=0; e<game[i].length; e++){
+                            if(game[i][e]==="f" || game[i][e]==="j"){
+                                document.write("<b>"+game[i][e]+"</b> ");
+                            }
+                            else {
+                                document.write(game[i][e]+" ");
+                            }
                         }
                     }
-                }
-                            
-                document.write("<br /><br />"+fant1["i"]+"|"+fant1["e"]+" ");
-                document.write("<br />"+fant2["i"]+"|"+fant2["e"]+" ");
-                document.write("<br />"+fant3["i"]+"|"+fant3["e"]+" ");
-                document.write("<br />"+jugador["i"]+"|"+jugador["e"]+" ");
-            },1000);
+                },1000);
+               }
+            
+            createTaula();
             
             /*for (i=0; i<game.length; i++){
                 document.write("<br />");
