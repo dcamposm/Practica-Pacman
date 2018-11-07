@@ -94,6 +94,15 @@ function ubiRand(){
 function setUbi(item){
     game[item["i"]][item["e"]]=item["car"];
 }
+
+function setUbiRand(item){
+    var ubi=ubiRand();
+    
+    item["i"]=ubi[0];
+    item["e"]=ubi[1];
+    
+    setUbi[item];
+}
 //Funcio per establir la direccio de manera aleatoria
 function direRand(item){
     
@@ -192,5 +201,19 @@ function movItem(item){
                     }
                     break;
         }
+    }
+    
+    function createTaula(){
+        for (i=0; i<game.length; i++){
+            document.write("<br />");
+            for (e=0; e<game[i].length; e++){
+                if(game[i][e]==="f" || game[i][e]==="j"){
+                    document.write("<b>"+game[i][e]+"</b> ");
+                }
+                else {
+                    document.write(game[i][e]+" ");
+                }
+            }
+       }
     }
 }
