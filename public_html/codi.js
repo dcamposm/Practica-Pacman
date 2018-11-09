@@ -40,46 +40,48 @@ game[27]=[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1];
 game[28]=[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 game[29]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
+
+function createObject(){
+    fant1= new Array();
+    fant1["car"]="f";
+    ubi=ubiRand();
+    fant1["i"]=ubi[0];
+    fant1["e"]=ubi[1];
+    //fant1["direccio"]="right";
+    direRand(fant1);
+
+    fant2= new Array();
+    fant2["car"]="f";
+    ubi=ubiRand();
+    fant2["i"]=ubi[0];
+    fant2["e"]=ubi[1];
+    //fant2["direccio"]="down";
+    direRand(fant2);
+
+    fant3= new Array();
+    fant3["car"]="f";
+    ubi=ubiRand();
+    fant3["i"]=ubi[0];
+    fant3["e"]=ubi[1];
+    //fant3["direccio"]="right";
+    direRand(fant3);
+
+    jugador= new Array();
+    jugador["car"]="j";
+    ubi=ubiRand();
+    jugador["i"]=ubi[0];
+    jugador["e"]=ubi[1];
+    //jugador["direccio"]="up";
+    direRand(jugador);
+    jugador["direccioDes"]="up";
+
+    //Ubiquem els fantasmes i el jugador al taule
+    setUbi(fant1);
+    setUbi(fant2);
+    setUbi(fant3);
+    setUbi(jugador);
+}
 //Creacio dels fantasmes y jugador
-/*var fant1= new Array();
-fant1["car"]="f";
-var ubi=ubiRand();
-fant1["i"]=ubi[0];
-fant1["e"]=ubi[1];
-//fant1["direccio"]="right";
-direRand(fant1);
-
-var fant2= new Array();
-fant2["car"]="f";
-var ubi=ubiRand();
-fant2["i"]=ubi[0];
-fant2["e"]=ubi[1];
-//fant2["direccio"]="down";
-direRand(fant2);
-
-var fant3= new Array();
-fant3["car"]="f";
-var ubi=ubiRand();
-fant3["i"]=ubi[0];
-fant3["e"]=ubi[1];
-//fant3["direccio"]="right";
-direRand(fant3);
-
-var jugador= new Array();
-jugador["car"]="j";
-var ubi=ubiRand();
-jugador["i"]=ubi[0];
-jugador["e"]=ubi[1];
-//jugador["direccio"]="up";
-direRand(jugador);
-jugador["direccioDes"]="up";
-
-//Ubiquem els fantasmes i el jugador al taule
-setUbi(fant1);
-setUbi(fant2);
-setUbi(fant3);
-setUbi(jugador);*/
-
 //FUNCIONS
 //Funcio per donar les cordenades del tauler de manera aleatoria
 function ubiRand(){
@@ -203,17 +205,25 @@ function movItem(item){
         }
     }
     
+    function iniciar(){
+        crear=setInterval(createTaula,1000);
+    }
+    
     function createTaula(){
+        taula="";
+        createObject();
+        
         for (i=0; i<game.length; i++){
-            document.write("<br />");
+            taula=taula+"<br />";
             for (e=0; e<game[i].length; e++){
                 if(game[i][e]==="f" || game[i][e]==="j"){
-                    document.write("<b>"+game[i][e]+"</b> ");
+                    taula=taula+"<b>"+game[i][e]+"</b> ";
                 }
                 else {
-                    document.write(game[i][e]+" ");
+                    taula=taula+game[i][e]+" ";
                 }
             }
        }
+       document.getElementById("view").innerHTML =taula;
     }
 }
