@@ -210,18 +210,14 @@ function movItem(item){
     switch (item["direccio"]){
         case "up":
            item["i"]=item["i"]-1;
-           item["e"]=item["e"];
            break;
         case "down":
            item["i"]=item["i"]+1;
-           item["e"]=item["e"];
            break;
         case "right":
-           item["i"]=item["i"];
            item["e"]=item["e"]+1;
            break;
         case "left":
-           item["i"]=item["i"];
            item["e"]=item["e"]-1;
            break;
     }
@@ -230,7 +226,38 @@ function movItem(item){
 function iniciar(){
     crear=setInterval(createTaula,1000);
 }
+function stop(){
+    clearInterval(crear);
+}
+function reset(){
+    stop();
+   
+    ubi=ubiRand();
+    fant1["i"]=ubi[0];
+    fant1["e"]=ubi[1];
+    direRand(fant1);
+    setUbi(fant1);
     
+    ubi=ubiRand();
+    fant2["i"]=ubi[0];
+    fant2["e"]=ubi[1];
+    direRand(fant2);
+    setUbi(fant2);
+    
+    ubi=ubiRand();
+    fant3["i"]=ubi[0];
+    fant3["e"]=ubi[1];
+    direRand(fant3);
+    setUbi(fant3);
+    
+    ubi=ubiRand();
+    jugador["i"]=ubi[0];
+    jugador["e"]=ubi[1];
+    direRand(jugador);
+    setUbi(jugador);
+    
+    iniciar();
+}    
 function createTaula(){
     taula="";
     
