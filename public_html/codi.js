@@ -171,35 +171,115 @@ function movItem(item){
     else {
         switch (item["direccio"]) {
                 case "up":
-                    if (game[item["i"]-1][item["e"]]!==0){
-                        direRand(item);
+                    if (item["car"]==="j"){
+                        if (game[item["i"]][item["e"]]==="f"){
+                            lose();
+                        }
+                        else {
+                            if (game[item["i"]-1][item["e"]]===1){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="up";
+                            }
+                        }
                     }
                     else {
-                        item["direccio"]="up";
+                        if (game[item["i"]][item["e"]]==="j"){
+                            lose();
+                        }
+                        else{
+                            if (game[item["i"]-1][item["e"]]!==0 && game[item["i"]-1][item["e"]]!=="j"){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="up";
+                            }
+                        }
                     }
                     break;
                 case "down":
-                    if (game[item["i"]+1][item["e"]]!==0){
-                        direRand(item);
+                    if (item["car"]==="j"){
+                        if (game[item["i"]][item["e"]]==="f"){
+                            lose();
+                        }
+                        else {
+                            if (game[item["i"]+1][item["e"]]!==0 && game[item["i"]+1][item["e"]]!=="f"){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="down";
+                            }
+                        }
                     }
                     else {
-                        item["direccio"]="down";
+                        if (game[item["i"]][item["e"]]==="j"){
+                            lose();
+                        }
+                        else{
+                            if (game[item["i"]+1][item["e"]]!==0 && game[item["i"]+1][item["e"]]!=="j"){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="down";
+                            }
+                        }
                     }
                     break;
                 case "right":
-                    if (game[item["i"]][item["e"]+1]!==0){
-                        direRand(item);
+                    if (item["car"]==="j"){
+                        if (game[item["i"]][item["e"]]==="f"){
+                            lose();
+                        }
+                        else {
+                            if (game[item["i"]][item["e"]+1]!==0 && game[item["i"]][item["e"]+1]!=="f"){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="right";
+                            }
+                        }
                     }
                     else {
-                        item["direccio"]="right";
+                        if (game[item["i"]][item["e"]]==="j"){
+                            lose();
+                        }
+                        else{
+                            if (game[item["i"]][item["e"]+1]!==0 && game[item["i"]][item["e"]+1]!=="j"){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="right";
+                            }
+                        }
                     }
                     break;
                 case "left":
-                    if (game[item["i"]][item["e"]-1]!==0){
-                        direRand(item);
+                    if (item["car"]==="j"){
+                        if (game[item["i"]][item["e"]]==="f"){
+                            lose();
+                        }
+                        else {
+                            if (game[item["i"]][item["e"]-1]!==0 && game[item["i"]][item["e"]-1]!=="f"){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="left";
+                            }
+                        }
                     }
                     else {
-                        item["direccio"]="left";
+                        if (game[item["i"]][item["e"]]==="j"){
+                            lose();
+                        }
+                        else{
+                            if (game[item["i"]][item["e"]-1]!==0 && game[item["i"]][item["e"]-1]!=="j"){
+                                direRand(item);
+                            }
+                            else {
+                                item["direccio"]="left";
+                            }
+                        }
                     }
                     break;
         }
@@ -223,6 +303,11 @@ function movItem(item){
            item["e"]=item["e"]-1;
            break;
     }
+}
+
+function lose(){
+    alert("HAS MUERTO");
+    stop();
 }
 //Funciones para los botones del html
 function iniciar(){
@@ -298,10 +383,6 @@ function createTaula(){
     log=log+print_r(jugador)+"<br />";
    document.getElementById("view").innerHTML =taula;
    document.getElementById("log").innerHTML =log;
-}
-
-function colisio(item){
-
 }
 
 function print_r(arr,level) {
