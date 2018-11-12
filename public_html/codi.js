@@ -207,16 +207,19 @@ function movItem(item){
     
     switch (item["direccio"]){
         case "up":
+           game[item["i"]][item["e"]]=0;
            item["i"]=item["i"]-1;
-           
            break;
         case "down":
+           game[item["i"]][item["e"]]=0;
            item["i"]=item["i"]+1;
            break;
         case "right":
+           game[item["i"]][item["e"]]=0;
            item["e"]=item["e"]+1;
            break;
         case "left":
+           game[item["i"]][item["e"]]=0;
            item["e"]=item["e"]-1;
            break;
     }
@@ -230,7 +233,9 @@ function stop(){
 }
 function reset(){
     stop();
-   
+    
+    newTaula();
+    
     ubi=ubiRand();
     fant1["i"]=ubi[0];
     fant1["e"]=ubi[1];
@@ -261,7 +266,7 @@ function reset(){
 function createTaula(){
     taula="";
     
-    newTaula();
+    //newTaula();
     
     movItem(fant1);
     setUbi(fant1);
