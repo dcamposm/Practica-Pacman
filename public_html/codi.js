@@ -75,7 +75,7 @@ jugador["i"]=ubi[0];
 jugador["e"]=ubi[1];
 //jugador["direccio"]="up";
 direRand(jugador);
-jugador["direccioDes"]="up";
+jugador["direccioDes"]="";
 
 //Ubiquem els fantasmes i el jugador al taule
 setUbi(fant1);
@@ -104,8 +104,6 @@ function setUbiRand(item){
     
     item["i"]=ubi[0];
     item["e"]=ubi[1];
-    
-    setUbi[item];
 }
 //Funcio per establir la direccio de manera aleatoria
 function direRand(item){
@@ -210,6 +208,7 @@ function movItem(item){
     switch (item["direccio"]){
         case "up":
            item["i"]=item["i"]-1;
+           
            break;
         case "down":
            item["i"]=item["i"]+1;
@@ -222,7 +221,7 @@ function movItem(item){
            break;
     }
 }
-
+//Funciones para los botones del html
 function iniciar(){
     crear=setInterval(createTaula,1000);
 }
@@ -257,7 +256,8 @@ function reset(){
     setUbi(jugador);
     
     iniciar();
-}    
+}
+//Funcion que imprimeix la taula en el html
 function createTaula(){
     taula="";
     
@@ -293,6 +293,10 @@ function createTaula(){
     log=log+print_r(jugador)+"<br />";
    document.getElementById("view").innerHTML =taula;
    document.getElementById("log").innerHTML =log;
+}
+
+function colisio(item){
+
 }
 
 function print_r(arr,level) {
