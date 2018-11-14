@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="codi.js"></script>
     </head>
-    <body>
+    <body id="play">
         <button onclick="iniciar()">Play</button>
         <button onclick="stop()">Pause</button>
         <button onclick="reset()">Reiniciar</button>
@@ -14,4 +14,8 @@
         <p id="log"></p>
         <noscript>No tens activat JavaScript</noscript>
     </body>
+    <script type="text/javascript">                                                          
+        var element = document.getElementById("play");                  
+        element.addEventListener("keydown", movJugador);   
+    </script>
 </html>

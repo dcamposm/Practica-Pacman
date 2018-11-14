@@ -1,6 +1,8 @@
 /* 
 Tasca 1
  */
+/* global e */
+
 var game= new Array(30);
 
 for (var i = 0; i < game.length; i++) {
@@ -166,7 +168,12 @@ function direRand(item){
 
 function movItem(item){
     if (game[item["i"]-1][item["e"]]===0 && game[item["i"]+1][item["e"]]===0 && game[item["i"]][item["e"]-1]===0 && game[item["i"]][item["e"]+1]===0 ){
-        direRand(item);
+        if (item["car"]==="j" && item["direccioDes"]!==""){
+            item["direccio"]=item["direccioDes"];
+        }
+        else{
+            direRand(item); 
+        }
     }
     else {
         switch (item["direccio"]) {
@@ -177,10 +184,27 @@ function movItem(item){
                         }
                         else {
                             if (game[item["i"]-1][item["e"]]===1){
-                                direRand(item);
+                                if (item["direccioDes"]!==""){
+                                    item["direccio"]=item["direccioDes"];
+                                    item["direccioDes"]="";
+                                }
+                                else{
+                                    direRand(item);
+                                }
                             }
                             else {
-                                item["direccio"]="up";
+                                if (item["direccioDes"]!=="" && item["direccioDes"]!=="up"){
+                                    if (provMovDes()==="true"){
+                                        item["direccio"]=item["direccioDes"];
+                                        item["direccioDes"]="";
+                                    }
+                                    else {
+                                       item["direccio"]="up"; 
+                                    }
+                                }
+                                else{
+                                    item["direccio"]="up";
+                                }
                             }
                         }
                     }
@@ -204,11 +228,28 @@ function movItem(item){
                             lose();
                         }
                         else {
-                            if (game[item["i"]+1][item["e"]]!==0 && game[item["i"]+1][item["e"]]!=="f"){
-                                direRand(item);
+                            if (game[item["i"]+1][item["e"]]===1){
+                                if (item["direccioDes"]!==""){
+                                    item["direccio"]=item["direccioDes"];
+                                    item["direccioDes"]="";
+                                }
+                                else{
+                                    direRand(item);
+                                }
                             }
                             else {
-                                item["direccio"]="down";
+                                if (item["direccioDes"]!=="" && item["direccioDes"]!=="down"){
+                                    if (provMovDes()==="true"){
+                                        item["direccio"]=item["direccioDes"];
+                                        item["direccioDes"]="";
+                                    }
+                                    else {
+                                       item["direccio"]="down"; 
+                                    }
+                                }
+                                else{
+                                    item["direccio"]="down";
+                                }
                             }
                         }
                     }
@@ -232,11 +273,28 @@ function movItem(item){
                             lose();
                         }
                         else {
-                            if (game[item["i"]][item["e"]+1]!==0 && game[item["i"]][item["e"]+1]!=="f"){
-                                direRand(item);
+                            if (game[item["i"]][item["e"]+1]===1){
+                                if (item["direccioDes"]!==""){
+                                    item["direccio"]=item["direccioDes"];
+                                    item["direccioDes"]="";
+                                }
+                                else{
+                                    direRand(item);
+                                }
                             }
                             else {
-                                item["direccio"]="right";
+                                if (item["direccioDes"]!=="" && item["direccioDes"]!=="right"){
+                                    if (provMovDes()==="true"){
+                                        item["direccio"]=item["direccioDes"];
+                                        item["direccioDes"]="";
+                                    }
+                                    else {
+                                       item["direccio"]="right"; 
+                                    }
+                                }
+                                else{
+                                    item["direccio"]="right";
+                                }                         
                             }
                         }
                     }
@@ -260,11 +318,28 @@ function movItem(item){
                             lose();
                         }
                         else {
-                            if (game[item["i"]][item["e"]-1]!==0 && game[item["i"]][item["e"]-1]!=="f"){
-                                direRand(item);
+                            if (game[item["i"]][item["e"]-1]===1){
+                                if (item["direccioDes"]!==""){
+                                    item["direccio"]=item["direccioDes"];
+                                    item["direccioDes"]="";
+                                }
+                                else{
+                                    direRand(item);
+                                }
                             }
                             else {
-                                item["direccio"]="left";
+                                if (item["direccioDes"]!=="" && item["direccioDes"]!=="left"){
+                                    if (provMovDes()==="true"){
+                                        item["direccio"]=item["direccioDes"];
+                                        item["direccioDes"]="";
+                                    }
+                                    else {
+                                       item["direccio"]="left"; 
+                                    }
+                                }
+                                else{
+                                    item["direccio"]="left";
+                                }                         
                             }
                         }
                     }
@@ -301,6 +376,58 @@ function movItem(item){
         case "left":
            game[item["i"]][item["e"]]=0;
            item["e"]=item["e"]-1;
+           break;
+    }
+}
+
+function movJugador(e){
+    if (e.key==="ArrowUp") {
+        jugador["direccioDes"]="up";
+    }
+    else if (e.key==="ArrowDown") {
+        jugador["direccioDes"]="down";
+    }
+    else if (e.key==="ArrowRight") {
+        jugador["direccioDes"]="right";
+    }
+    else if (e.key==="ArrowLeft") {
+        jugador["direccioDes"]="left";
+    }
+}
+
+function provMovDes(){
+    switch (jugador["direccioDes"]){
+        case "up":
+           if (game[jugador["i"]-1][jugador["e"]]===0){
+               return "true";
+           }
+           else {
+               return "false";
+           }
+           break;
+        case "down":
+           if (game[jugador["i"]+1][jugador["e"]]===0){
+               return "true";
+           }
+           else {
+               return "false";
+           }
+           break;
+        case "right":
+           if (game[jugador["i"]][jugador["e"]+1]===0){
+               return "true";
+           }
+           else {
+               return "false";
+           }
+           break;
+        case "left":
+           if (game[jugador["i"]][jugador["e"]-1]===0){
+               return "true";
+           }
+           else {
+               return "false";
+           }
            break;
     }
 }
