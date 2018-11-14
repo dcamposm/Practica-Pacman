@@ -85,6 +85,13 @@ setUbi(fant2);
 setUbi(fant3);
 setUbi(jugador);
 
+punts=0;
+maxActP=0;
+
+if (getCookie("maxP")===""){
+   document.cookie = "maxP=0"; 
+}
+
 //Creacio dels fantasmes y jugador
 //FUNCIONS
 //Funcio per donar les cordenades del tauler de manera aleatoria
@@ -167,7 +174,22 @@ function direRand(item){
 }
 
 function movItem(item){
-    if (game[item["i"]-1][item["e"]]===0 && game[item["i"]+1][item["e"]]===0 && game[item["i"]][item["e"]-1]===0 && game[item["i"]][item["e"]+1]===0 ){
+    creu=0;
+    
+    if(game[item["i"]-1][item["e"]]===0){
+        creu++;
+    }
+    if(game[item["i"]+1][item["e"]]===0){
+        creu++;
+    }
+    if(game[item["i"]][item["e"]+1]===0){
+        creu++;
+    }
+    if(game[item["i"]-1][item["e"]-1]===0){
+        creu++;
+    }
+    
+    if (creu>2){
         if (item["car"]==="j" && item["direccioDes"]!==""){
             item["direccio"]=item["direccioDes"];
         }
@@ -432,9 +454,27 @@ function provMovDes(){
     }
 }
 
+function win(){
+    alert("HAS GUANYAT");
+    
+    maxActP=maxActP+punts;
+    
+    if (getCookie("maxP")<maxActP){
+        document.cookie="maxP="+maxActP;
+    }
+    reset();
+}
+
 function lose(){
     alert("HAS MUERTO");
-    stop();
+    
+    maxActP=maxActP+punts;
+    
+    if (getCookie("maxP")<maxActP){
+        document.cookie="maxP="+maxActP;
+    }
+    maxActP=0;
+    reset();
 }
 //Funciones para los botones del html
 function iniciar(){
@@ -472,53 +512,66 @@ function reset(){
     direRand(jugador);
     setUbi(jugador);
     
+    punts=0;
+    
     iniciar();
 }
 //Funcion que imprimeix la taula en el html
 function createTaula(){
-    var taula = document.getElementById("view");
-    var ctx = taula.getContext("2d");
-    var img;
-    
-    //newTaula();
-    
-    movItem(fant1);
-    setUbi(fant1);
-    movItem(fant2);
-    setUbi(fant2);
-    movItem(fant3);
-    setUbi(fant3);
-    movItem(jugador);
-    setUbi(jugador);
-    
-    for (i=0; i<game.length; i++){
-        for (e=0; e<game[i].length; e++){
-            if(game[i][e]==="f"){
-                img = document.getElementById("fant");
+    if (punts<50){
+        var taula = document.getElementById("view");
+        var ctx = taula.getContext("2d");
+        var img;
+
+        //newTaula();
+
+        movItem(fant1);
+        setUbi(fant1);
+        movItem(fant2);
+        setUbi(fant2);
+        movItem(fant3);
+        setUbi(fant3);
+        movItem(jugador);
+        setUbi(jugador);
+
+        punts++;
+
+        for (i=0; i<game.length; i++){
+            for (e=0; e<game[i].length; e++){
+                if(game[i][e]==="f"){
+                    img = document.getElementById("fant");
+                }
+                else if (game[i][e]==="j") {
+                    img = document.getElementById("pacman");
+                }
+                else if (game[i][e]===1) {
+                    img = document.getElementById("pared");
+                }
+                else {
+                    img = document.getElementById("res");
+                }
+
+                ctx.drawImage(img, e*23, i*23, 20, 20);
             }
-            else if (game[i][e]==="j") {
-                img = document.getElementById("pacman");
-            }
-            else if (game[i][e]===1) {
-                img = document.getElementById("pared");
-            }
-            else {
-                img = document.getElementById("res");
-            }
-            
-            ctx.drawImage(img, e*23, i*23, 20, 20);
-        }
+       }
+
+       log="Log<br>";
+
+       logPunts="<b>PuntsMax:</b> "+getCookie("maxP")+" <b>PuntsActuals: </b>"+punts;
+
+       /*log=log+"<br />"+fant1["i"]+"|"+fant1["e"]+"<br />"+fant2["i"]+"|"+fant2["e"]+"<br />"+fant3["i"]+"|"+fant3["e"]+"<br />"+jugador["i"]+"|"+jugador["e"];*/
+       log=log+print_r(fant1)+"<br />";
+        log=log+print_r(fant2)+"<br />";
+        log=log+print_r(fant3)+"<br />";
+        log=log+print_r(jugador)+"<br />";
+       //document.getElementById("view").innerHTML =taula;
+       document.getElementById("log").innerHTML =log;
+       document.getElementById("punt").innerHTML =logPunts;
    }
    
-   log="";
-   
-   /*log=log+"<br />"+fant1["i"]+"|"+fant1["e"]+"<br />"+fant2["i"]+"|"+fant2["e"]+"<br />"+fant3["i"]+"|"+fant3["e"]+"<br />"+jugador["i"]+"|"+jugador["e"];*/
-   log=log+print_r(fant1)+"<br />";
-    log=log+print_r(fant2)+"<br />";
-    log=log+print_r(fant3)+"<br />";
-    log=log+print_r(jugador)+"<br />";
-   //document.getElementById("view").innerHTML =taula;
-   document.getElementById("log").innerHTML =log;
+   else{
+       win();
+   }
 }
 
 function print_r(arr,level) {
@@ -541,4 +594,20 @@ function print_r(arr,level) {
   }
   dumped_text=dumped_text+")"+arr.length;
   return dumped_text;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
