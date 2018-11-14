@@ -476,7 +476,9 @@ function reset(){
 }
 //Funcion que imprimeix la taula en el html
 function createTaula(){
-    taula="";
+    var taula = document.getElementById("view");
+    var ctx = taula.getContext("2d");
+    var img;
     
     //newTaula();
     
@@ -490,26 +492,33 @@ function createTaula(){
     setUbi(jugador);
     
     for (i=0; i<game.length; i++){
-        taula=taula+"<br />";
         for (e=0; e<game[i].length; e++){
-            if(game[i][e]==="f" || game[i][e]==="j"){
-                taula=taula+"<b>"+game[i][e]+"</b> ";
+            if(game[i][e]==="f"){
+                img = document.getElementById("fant");
+            }
+            else if (game[i][e]==="j") {
+                img = document.getElementById("pacman");
+            }
+            else if (game[i][e]===1) {
+                img = document.getElementById("pared");
             }
             else {
-                taula=taula+game[i][e]+" ";
+                img = document.getElementById("res");
             }
+            
+            ctx.drawImage(img, i*20, e*20, 500, 500 );
         }
    }
    
    log="";
    
    /*log=log+"<br />"+fant1["i"]+"|"+fant1["e"]+"<br />"+fant2["i"]+"|"+fant2["e"]+"<br />"+fant3["i"]+"|"+fant3["e"]+"<br />"+jugador["i"]+"|"+jugador["e"];*/
-    log=log+print_r(fant1)+"<br />";
+   /* log=log+print_r(fant1)+"<br />";
     log=log+print_r(fant2)+"<br />";
     log=log+print_r(fant3)+"<br />";
     log=log+print_r(jugador)+"<br />";
-   document.getElementById("view").innerHTML =taula;
-   document.getElementById("log").innerHTML =log;
+   //document.getElementById("view").innerHTML =taula;
+   document.getElementById("log").innerHTML =log;*/
 }
 
 function print_r(arr,level) {
