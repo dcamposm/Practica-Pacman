@@ -8,7 +8,7 @@ var game= new Array(30);
 for (var i = 0; i < game.length; i++) {
   game[i] = new Array(30);
 }
-
+//Funcio per crear la taula
 newTaula();
 
 function newTaula(){
@@ -46,6 +46,7 @@ game[28]=[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 game[29]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 }
 
+//Arrays dels fantasmes i el jugador amb les seves caracteristiques
 var fant1= new Array();
 fant1["car"]="f";
 ubi=ubiRand();
@@ -85,6 +86,7 @@ setUbi(fant2);
 setUbi(fant3);
 setUbi(jugador);
 
+//Variables per la puntuacio i la cookie on se guardara la ountuacio final
 punts=0;
 maxActP=0;
 
@@ -173,7 +175,9 @@ function direRand(item){
     }
 }
 
+//Funcio per indicar a quina direccio es moura els fantasmes i el jugador
 function movItem(item){
+    //Primer es comprova si estan en una difurcacio
     creu=0;
     
     if(game[item["i"]-1][item["e"]]===0){
@@ -188,7 +192,7 @@ function movItem(item){
     if(game[item["i"]-1][item["e"]-1]===0){
         creu++;
     }
-    
+    //En cas que estan en una, s'eligira una direccio aleatoria. Menys el jugador si te assignat una direccio donada per el teclat.
     if (creu>2){
         if (item["car"]==="j" && item["direccioDes"]!==""){
             item["direccio"]=item["direccioDes"];
@@ -197,6 +201,7 @@ function movItem(item){
             direRand(item); 
         }
     }
+    //En cas que no, es comprovara si en la direccio on van hi ha una paret o no, o en el cas del jugador si te assignat una direccio donada per el teclat.
     else {
         switch (item["direccio"]) {
                 case "up":
@@ -381,7 +386,7 @@ function movItem(item){
                     break;
         }
     }
-    
+    //Una vegada ja te assignat la direccio on es mouran, canviara la seva cordenada en la array i posant en la posicio on estavan un espai vuit.
     switch (item["direccio"]){
         case "up":
            game[item["i"]][item["e"]]=0;
@@ -401,7 +406,7 @@ function movItem(item){
            break;
     }
 }
-
+//Funcio per saber quina direccio vol el jugador, donada per teclat
 function movJugador(e){
     if (e.key==="ArrowUp") {
         jugador["direccioDes"]="up";
@@ -416,7 +421,7 @@ function movJugador(e){
         jugador["direccioDes"]="left";
     }
 }
-
+//Funcio que comprova si la direccio que vol anar el jugador hi ha una paret o no.
 function provMovDes(){
     switch (jugador["direccioDes"]){
         case "up":
@@ -453,7 +458,7 @@ function provMovDes(){
            break;
     }
 }
-
+//Funcio que s'executa quan guanyas
 function win(){
     alert("HAS GUANYAT");
     
@@ -464,7 +469,7 @@ function win(){
     }
     reset();
 }
-
+//Funcio que s'executa quan perds
 function lose(){
     alert("HAS MUERTO");
     
@@ -476,7 +481,7 @@ function lose(){
     maxActP=0;
     reset();
 }
-//Funciones para los botones del html
+//Funciones per els botons del html
 function iniciar(){
     crear=setInterval(createTaula,1000);
 }
@@ -559,12 +564,10 @@ function createTaula(){
 
        logPunts="<b>PuntsMax:</b> "+getCookie("maxP")+" <b>PuntsActuals: </b>"+punts;
 
-       /*log=log+"<br />"+fant1["i"]+"|"+fant1["e"]+"<br />"+fant2["i"]+"|"+fant2["e"]+"<br />"+fant3["i"]+"|"+fant3["e"]+"<br />"+jugador["i"]+"|"+jugador["e"];*/
        log=log+print_r(fant1)+"<br />";
         log=log+print_r(fant2)+"<br />";
         log=log+print_r(fant3)+"<br />";
         log=log+print_r(jugador)+"<br />";
-       //document.getElementById("view").innerHTML =taula;
        document.getElementById("log").innerHTML =log;
        document.getElementById("punt").innerHTML =logPunts;
    }
@@ -573,7 +576,7 @@ function createTaula(){
        win();
    }
 }
-
+//Funcio per imprimir una array
 function print_r(arr,level) {
   var dumped_text = "(";
   if(!level) level = 0;
@@ -595,17 +598,17 @@ function print_r(arr,level) {
   dumped_text=dumped_text+")"+arr.length;
   return dumped_text;
 }
-
+//Funcio per donar el valor d'una cookie
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
     for(var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
         }
     }
