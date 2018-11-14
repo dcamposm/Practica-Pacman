@@ -506,19 +506,19 @@ function createTaula(){
                 img = document.getElementById("res");
             }
             
-            ctx.drawImage(img, i*20, e*20, 500, 500 );
+            ctx.drawImage(img, e*23, i*23, 20, 20);
         }
    }
    
    log="";
    
    /*log=log+"<br />"+fant1["i"]+"|"+fant1["e"]+"<br />"+fant2["i"]+"|"+fant2["e"]+"<br />"+fant3["i"]+"|"+fant3["e"]+"<br />"+jugador["i"]+"|"+jugador["e"];*/
-   /* log=log+print_r(fant1)+"<br />";
+   log=log+print_r(fant1)+"<br />";
     log=log+print_r(fant2)+"<br />";
     log=log+print_r(fant3)+"<br />";
     log=log+print_r(jugador)+"<br />";
    //document.getElementById("view").innerHTML =taula;
-   document.getElementById("log").innerHTML =log;*/
+   document.getElementById("log").innerHTML =log;
 }
 
 function print_r(arr,level) {
